@@ -11,15 +11,15 @@ A complete **Full Stack Learning Management System (LMS)** built with the MERN S
 
 | **Landing Page** | **Course Player** |
 |:---:|:---:|
-| ![Landing Page](./screenshots/Dashboard.png) | ![Course Player](./screenshots/Player.jpg) |
+| ![Landing Page](./screenshots/Dashboard.png) | ![Course Player](./screenshots/Player.png) |
 
 | **User Dashboard** | **Admin Panel** |
 |:---:|:---:|
-| ![Dashboard](./screenshots/UserDashboard.jpg) | ![Admin Panel](./screenshots/Admin.jpg) |
+| ![Dashboard](./screenshots/UserDashboard.png) | ![Admin Panel](./screenshots/Admin.png) |
 
 | **Light Theme View** | **About** |
 |:---:|:---:|
-| ![Dashboard](./screenshots/LightThemeCourses.jpg) | ![Admin Panel](./screenshots/About.jpg) |
+| ![Dashboard](./screenshots/LightThemeCourses.png) | ![Admin Panel](./screenshots/About.png) |
 
 
 
