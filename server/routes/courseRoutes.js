@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Course = require('../models/Course');
 
-// 👇 Dhyan dein: Aapke file ka naam 'authMiddleware.js' hona chahiye middleware folder mein
+
 const { protect, admin } = require('../middleware/authMiddleware'); 
 
 // 1. GET All Courses (Public)

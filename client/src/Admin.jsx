@@ -27,7 +27,7 @@ const Admin = () => {
 
     const fetchCourses = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/courses');
+            const res = await axios.get('https://zehnify-learning-platform.onrender.com/api/courses');
             // Safety check: Agar data nahi aaya to empty array rakho
             setCourses(res.data.data || []);
         } catch (err) {
@@ -38,7 +38,7 @@ const Admin = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/api/courses', formData, getConfig());
+            await axios.post('https://zehnify-learning-platform.onrender.com/api/courses', formData, getConfig());
             alert("Course Added Successfully! 🎉");
             setShowForm(false);
             fetchCourses();
@@ -51,7 +51,7 @@ const Admin = () => {
     const handleDelete = async (id) => {
         if(!window.confirm("Are you sure you want to delete this course?")) return;
         try {
-            await axios.delete(`http://localhost:5000/api/courses/${id}`, getConfig());
+            await axios.delete(`https://zehnify-learning-platform.onrender.com/api/courses/${id}`, getConfig());
             alert("Course Deleted!");
             fetchCourses();
         } catch (err) {

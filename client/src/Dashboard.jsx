@@ -16,7 +16,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchEnrollments = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/enrollments/${userId}`);
+                const response = await fetch(`https://zehnify-learning-platform.onrender.com/api/enrollments/${userId}`);
                 const result = await response.json();
 
                 if (result.success) {

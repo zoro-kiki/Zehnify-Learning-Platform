@@ -74,7 +74,7 @@ const Courses = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/courses');
+        const response = await axios.get('https://zehnify-learning-platform.onrender.com/api/courses');
         setCourses(response.data.data);
         setLoading(false);
       } catch (error) {
@@ -93,7 +93,7 @@ const Courses = () => {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/api/enrollments', {
+      const res = await axios.post('https://zehnify-learning-platform.onrender.com/api/enrollments', {
         userId,
         courseId
       });
@@ -251,7 +251,7 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "https://zehnify-learning-platform.onrender.com/api/auth/login",
         formData
       );
 
@@ -382,7 +382,7 @@ const Signup = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/register",
+        "https://zehnify-learning-platform.onrender.com/api/auth/register",
         formData
       );
 
