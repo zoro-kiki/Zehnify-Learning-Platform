@@ -7,7 +7,7 @@ import axios from 'axios';
 import { FaGithub, FaRocket } from "react-icons/fa";
 import {
   FiSun, FiMoon, FiUser, FiLogOut, FiGrid, FiBook,
-  FiChevronDown, FiCheckCircle, FiMail, FiLock, FiEye, FiEyeOff, FiTarget
+  FiChevronDown, FiCheckCircle, FiMail, FiLock, FiEye, FiEyeOff, FiTarget, FiMenu, FiX
 } from "react-icons/fi";
 
 // --- PAGE IMPORTS ---
@@ -486,6 +486,7 @@ const Signup = () => {
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem('theme') === 'dark';
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
   });
 
   useEffect(() => {
@@ -513,6 +514,7 @@ function App() {
                   Zehnify<span className="text-gray-400 text-3xl">.</span>
                 </Link>
 
+                {/* 💻 Desktop Menu (Mobile pe hidden rahega) */}
                 <div className="hidden md:flex ml-10 space-x-8">
                   <Link to="/" className="text-gray-700 dark:text-gray-300 hover:text-violet-600 px-3 py-2 rounded-md font-medium transition">Home</Link>
                   <Link to="/courses" className="text-gray-700 dark:text-gray-300 hover:text-violet-600 px-3 py-2 rounded-md font-medium transition">Courses</Link>
@@ -523,62 +525,73 @@ function App() {
               <div className="flex items-center space-x-4">
                 <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
 
-                {/* --- LOGIC: User Dropdown (Replaced old button) --- */}
+                {/* User Dropdown / Login Buttons (Desktop & Mobile dono pe dikhenge) */}
                 {localStorage.getItem('token') ? (
                   <div className="flex items-center gap-4">
-
-                    {/* Dropdown Container */}
                     <div className="relative group">
-
-                      {/* Trigger Button */}
                       <button className="flex items-center gap-2 text-gray-700 dark:text-gray-200 font-medium hover:text-violet-600 transition py-2">
                         <span className="bg-violet-100 dark:bg-violet-900 text-violet-700 dark:text-violet-300 p-1.5 rounded-full">
                           <FiUser size={16} />
                         </span>
-                        Hi, {localStorage.getItem('userName') || 'User'}
+                        {/* Mobile pe naam chupa do, sirf icon dikhao */}
+                        <span className="hidden md:block">Hi, {localStorage.getItem('userName') || 'User'}</span>
                         <FiChevronDown className="text-gray-400 group-hover:rotate-180 transition-transform duration-300" />
                       </button>
 
                       {/* Dropdown Menu */}
-                      <div className="absolute right-0 top-full mt-0 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-100 dark:border-gray-700 overflow-hidden hidden group-hover:block z-50 transform origin-top transition-all animation-fade-in">
-
-                        {/* Menu Items */}
-                        <Link to="/dashboard" className="px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-violet-50 dark:hover:bg-gray-700 hover:text-violet-600 transition flex items-center gap-3">
+                      <div className="absolute right-0 top-full mt-0 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-100 dark:border-gray-700 overflow-hidden hidden group-hover:block z-50">
+                        <Link to="/dashboard" className="px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-violet-50 dark:hover:bg-gray-700 hover:text-violet-600 flex items-center gap-3">
                           <FiGrid /> Dashboard
                         </Link>
-
-                        <Link to="/courses" className="px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-violet-50 dark:hover:bg-gray-700 hover:text-violet-600 transition flex items-center gap-3">
+                        <Link to="/courses" className="px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-violet-50 dark:hover:bg-gray-700 hover:text-violet-600 flex items-center gap-3">
                           <FiBook /> My Courses
                         </Link>
-
-                        {/* Divider Line */}
                         <div className="border-t border-gray-100 dark:border-gray-700 my-1"></div>
-
-                        {/* Logout Button */}
                         <button
-                          onClick={() => {
-                            localStorage.clear();
-                            window.location.href = '/login';
-                          }}
-                          className="w-full text-left px-5 py-3 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition flex items-center gap-3"
+                          onClick={() => { localStorage.clear(); window.location.href = '/login'; }}
+                          className="w-full text-left px-5 py-3 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center gap-3"
                         >
                           <FiLogOut /> Logout
                         </button>
                       </div>
-
                     </div>
                   </div>
                 ) : (
-                  /* Login Buttons */
-                  <div className="flex gap-4">
+                  /* Login Buttons (Sirf Desktop pe dikhao, Mobile pe Menu ke andar honge) */
+                  <div className="hidden md:flex gap-4">
                     <Link to="/login" className="text-gray-700 dark:text-gray-300 hover:text-violet-600 font-medium transition py-2">Log in</Link>
-                    <Link to="/signup" className="bg-violet-600 text-white px-4 py-2 rounded-md font-medium hover:bg-violet-700 transition shadow-lg shadow-violet-500/20">Sign up</Link>
+                    <Link to="/signup" className="bg-violet-600 text-white px-4 py-2 rounded-md font-medium hover:bg-violet-700 transition shadow-lg">Sign up</Link>
                   </div>
                 )}
+
+                {/* 🍔 MOBILE MENU BUTTON (Sirf Mobile pe dikhega) */}
+                <button
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  className="md:hidden text-gray-700 dark:text-gray-300 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition focus:outline-none"
+                >
+                  {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+                </button>
 
               </div>
             </div>
           </div>
+
+          {/* 📱 MOBILE MENU LIST (Jab button dabega tab ye khulega) */}
+          {isMenuOpen && (
+            <div className="md:hidden bg-white dark:bg-gray-900 border-t dark:border-gray-800 px-4 pt-2 pb-4 space-y-2 shadow-lg animate-fade-in-down">
+              <Link to="/" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-violet-600 hover:bg-violet-50 dark:hover:bg-gray-800">Home</Link>
+              <Link to="/courses" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-violet-600 hover:bg-violet-50 dark:hover:bg-gray-800">Courses</Link>
+              <Link to="/about" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-violet-600 hover:bg-violet-50 dark:hover:bg-gray-800">About</Link>
+
+
+              {!localStorage.getItem('token') && (
+                <div className="mt-4 flex flex-col gap-2 pt-2 border-t border-gray-100 dark:border-gray-800">
+                  <Link to="/login" onClick={() => setIsMenuOpen(false)} className="block text-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-violet-600 hover:bg-violet-700">Log in</Link>
+                  <Link to="/signup" onClick={() => setIsMenuOpen(false)} className="block text-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-base font-medium text-gray-700 bg-white hover:bg-gray-50">Sign up</Link>
+                </div>
+              )}
+            </div>
+          )}
         </nav>
 
         {/* Routes Setup */}
@@ -591,7 +604,7 @@ function App() {
           <Route path="/dashboard" element={localStorage.getItem('token') ? <Dashboard /> : <Login />} />
           <Route path="/learn/:courseId" element={localStorage.getItem('token') ? <CoursePlayer /> : <Login />} />
           <Route path="/admin" element={localStorage.getItem('token') ? <Admin /> : <Login />} />
-          
+
         </Routes>
 
       </div>
