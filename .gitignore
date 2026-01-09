@@ -1,0 +1,19 @@
+# Dependencies (Ye heavy folders upload nahi hone chahiye)
+node_modules/
+
+# Security (Sabse Important - Passwords Hidden Rahenge)
+.env
+.env.local
+
+# Build Outputs
+dist/
+build/
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
